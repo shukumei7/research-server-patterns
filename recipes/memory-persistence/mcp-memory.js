@@ -5,10 +5,18 @@ import Database from 'better-sqlite3';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+process.on('unhandledRejection', (err) => {
+  process.stderr.write(`research-memory: fatal: ${err.message}\n`);
+  process.exit(1);
+});
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = process.env.MEMORY_DB_PATH || path.join(__dirname, 'memory.db');
-const db = new Database(dbPath);
-db.pragma('journal_mode = WAL');
+
+let db;
+try {
+  db = new Database(dbPath);
+  db.pragma('journal_mode = WAL');
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS memory (
@@ -16,7 +24,6 @@ db.exec(`
     key TEXT NOT NULL,
     content TEXT NOT NULL,
     project TEXT NOT NULL DEFAULT 'default',
-    tags TEXT NOT NULL DEFAULT '[]',
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
   CREATE UNIQUE INDEX IF NOT EXISTS idx_memory_key_project ON memory(key, project);
@@ -50,6 +57,10 @@ db.exec(`
   );
   CREATE INDEX IF NOT EXISTS idx_sessions_project ON sessions(project, created_at DESC);
 `);
+} catch (err) {
+  process.stderr.write(`research-memory: failed to open database at ${dbPath}: ${err.message}\n`);
+  process.exit(1);
+}
 
 const TOOLS = [
   {
@@ -60,8 +71,7 @@ const TOOLS = [
       properties: {
         key:     { type: 'string', description: 'Unique key within the project (e.g. "auth-pattern", "current-task")' },
         content: { type: 'string', description: 'The memory content to store' },
-        project: { type: 'string', description: 'Project name (defaults to "default")' },
-        tags:    { type: 'array', items: { type: 'string' }, description: 'Optional tags for filtering' }
+        project: { type: 'string', description: 'Project name (defaults to "default")' }
       },
       required: ['key', 'content']
     }
@@ -72,8 +82,8 @@ const TOOLS = [
     inputSchema: {
       type: 'object',
       properties: {
-        key:     { type: 'string' },
-        project: { type: 'string' }
+        key:     { type: 'string', description: 'The key to retrieve (same key used in memory_save)' },
+        project: { type: 'string', description: 'Project name (defaults to "default")' }
       },
       required: ['key']
     }
@@ -85,7 +95,7 @@ const TOOLS = [
       type: 'object',
       properties: {
         query:   { type: 'string', description: 'Search terms' },
-        project: { type: 'string', description: 'Limit to a specific project (optional)' }
+        project: { type: 'string', description: 'Limit search to a specific project (defaults to all projects)' }
       },
       required: ['query']
     }
@@ -131,15 +141,13 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   try {
     if (name === 'memory_save') {
       const project = a.project || 'default';
-      const tags = JSON.stringify(Array.isArray(a.tags) ? a.tags : []);
       db.prepare(`
-        INSERT INTO memory (key, content, project, tags, updated_at)
-        VALUES (?, ?, ?, ?, datetime('now'))
+        INSERT INTO memory (key, content, project, updated_at)
+        VALUES (?, ?, ?, datetime('now'))
         ON CONFLICT(key, project) DO UPDATE SET
           content = excluded.content,
-          tags = excluded.tags,
           updated_at = excluded.updated_at
-      `).run(a.key, a.content, project, tags);
+      `).run(a.key, a.content, project);
       return { content: [{ type: 'text', text: `Saved: ${a.key} [${project}]` }] };
     }
 
@@ -151,7 +159,11 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     }
 
     if (name === 'memory_search') {
-      const sanitized = (a.query || '').replace(/[."*()^~:]/g, ' ').trim();
+      const sanitized = (a.query || '')
+        .replace(/[."*()^~:+\-]/g, ' ')
+        .replace(/\b(AND|OR|NOT)\b/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
       if (!sanitized) return { content: [{ type: 'text', text: 'Query is empty after sanitization.' }] };
       const rows = a.project
         ? db.prepare(`SELECT m.key, m.content, m.project FROM memory_fts f JOIN memory m ON f.rowid = m.id WHERE memory_fts MATCH ? AND m.project = ? ORDER BY rank LIMIT 10`).all(sanitized, a.project)
@@ -161,12 +173,13 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     }
 
     if (name === 'session_save') {
+      const nextSteps = Array.isArray(a.next_steps) ? a.next_steps : [];
       db.prepare(`
         INSERT INTO sessions (session_id, project, title, summary, next_steps)
         VALUES (?, ?, ?, ?, ?)
         ON CONFLICT(session_id, project) DO UPDATE SET
           title = excluded.title, summary = excluded.summary, next_steps = excluded.next_steps
-      `).run(a.session_id, a.project, a.title, a.summary, JSON.stringify(a.next_steps || []));
+      `).run(a.session_id, a.project, a.title, a.summary, JSON.stringify(nextSteps));
       return { content: [{ type: 'text', text: `Session saved: ${a.title}` }] };
     }
 
