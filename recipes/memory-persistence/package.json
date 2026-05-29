@@ -1,0 +1,12 @@
+{
+  "name": "research-memory-recipe",
+  "version": "1.0.0",
+  "description": "Persistent memory MCP server for Claude Code — 5 tools, SQLite, stdio",
+  "type": "module",
+  "main": "mcp-memory.js",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "better-sqlite3": "^11.0.0"
+  }
+}
