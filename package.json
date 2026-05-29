@@ -1,0 +1,6 @@
+{
+  "name": "rs-public",
+  "version": "1.0.0",
+  "description": "Persistent agentic infrastructure patterns for Claude Code",
+  "private": true
+}
