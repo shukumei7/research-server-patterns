@@ -27,7 +27,7 @@ Memory persists in a local SQLite file. Nothing leaves your machine.
 **1. Clone and install**
 
 ```bash
-git clone https://github.com/shoogarsoft/research-server-patterns
+git clone https://github.com/shukumei7/research-server-patterns
 cd research-server-patterns/recipes/memory-persistence
 npm install
 ```
@@ -102,5 +102,5 @@ Or add to your shell profile to make it permanent.
 
 Research Server is a full autonomous back-office system for solo founders — email triggers, scheduled agents, SR&ED diary automation, accounting automation, and more. This recipe is the memory layer, standalone.
 
-[→ Research Server on GitHub](https://github.com/shoogarsoft/research-server-patterns)  
-[→ Done-for-you setup ($2,500)](https://shoogarsoft.github.io/research-server-patterns/dfy/)
+[→ Research Server on GitHub](https://github.com/shukumei7/research-server-patterns)  
+[→ Done-for-you setup ($2,500)](https://shukumei7.github.io/research-server-patterns/dfy/)
