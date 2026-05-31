@@ -18,7 +18,7 @@ Standalone, working patterns. Each solves one problem completely. Each runs with
 | Recipe | What it does | Time to set up |
 |--------|-------------|----------------|
 | [Memory persistence](./recipes/memory-persistence/) | Claude remembers Monday on Friday | 5 min |
-| Email-triggered agent *(coming soon)* | Forward an email — agent executes the task | — |
+| [Email-triggered agent](./recipes/email-trigger/) | Forward an email — agent executes the task and replies | 15 min |
 | SR&ED diary *(coming soon)* | Auto-generates diary from git commits + terminal history | — |
 | Morning briefing *(coming soon)* | Synthesized project status email every morning | — |
 | Cron agent *(coming soon)* | Run Claude Code on a schedule, unattended | — |

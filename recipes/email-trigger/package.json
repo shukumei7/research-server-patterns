@@ -1,0 +1,16 @@
+{
+  "name": "research-server-email-trigger",
+  "version": "1.0.0",
+  "description": "Email-triggered Claude Code agent — forward an email, Claude executes the task and replies",
+  "type": "module",
+  "main": "email-trigger.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node email-trigger.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "imapflow": "^1.0.0",
+    "nodemailer": "^6.0.0"
+  }
+}
