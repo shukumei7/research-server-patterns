@@ -106,7 +106,9 @@
       "name": "claude-instructions",
       "mailbox": "claude",
       "from_filter": "jane@acmedev.ca",
+      "_from_filter_note": "REQUIRED for security. Substring match only — 'jane@acmedev.ca' also matches 'jane@acmedev.ca.evil.com'. For high-sensitivity triggers, add sender verification in the prompt itself. Never set from_filter to the agent's own outbound address (creates reply loops).",
       "prompt_template": "Process instruction email from Jane. Execute requested tasks in the project directory. Reply with confirmation and summary of what was done.",
+      "_prompt_note": "A security guardrail is automatically appended by generate-constitution.js. Do not include credential access, system config changes, or open-ended file operations in the base prompt.",
       "cwd": "C:/Projects"
     }
   ],
