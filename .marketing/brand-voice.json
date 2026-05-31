@@ -1,0 +1,16 @@
+{
+  "tone": "Terse and technically confident \u2014 written for builders who hate fluff and recognize signal immediately. Every sentence earns its place.",
+  "do_list": [
+    "Lead with concrete capability, not abstract value ('Agents wake from a forwarded email' not 'powerful automation')",
+    "Use short declarative sentences that assume technical literacy",
+    "Quantify setup friction honestly ('5 minutes', '$2,500 flat') \u2014 specificity builds trust"
+  ],
+  "dont_list": [
+    "Never use 'revolutionary', 'game-changing', or AI hype vocabulary",
+    "Don't explain what agents or memory are \u2014 the audience already knows",
+    "Avoid soft CTAs like 'learn more' or 'explore' \u2014 use direct action framing"
+  ],
+  "source": "synthesized",
+  "article_count": 0,
+  "extracted_at": "2026-05-30T00:44:17.710052+00:00"
+}

@@ -1,0 +1,115 @@
+{
+  "product_summary": {
+    "name": "Research Server",
+    "tagline": "Claude Code remembers Monday on Friday. You manage your AI agent by email.",
+    "tagline_general": "",
+    "url": "https://shukumei7.github.io/research-server-patterns/",
+    "description": "Research Server is persistent agentic infrastructure for Claude Code power users. Sessions remember what happened last week. Agents wake up from a forwarded email, execute a task, and go back to sleep. The memory persistence recipe works in 5 minutes. Done-for-you setup available at $2,500 flat.\n",
+    "category": "developer-tools"
+  },
+  "target_audience": {
+    "primary": "Claude Code power users, solo founders, Canadian tech founders with SR&ED",
+    "pain_points": [
+      "Claude Code forgets everything between sessions \u00e2\u20ac\u201d re-explaining context every time",
+      "No way to trigger Claude from an email without complex infrastructure",
+      "SR&ED diary is always behind, risks CRA rejection for post-hoc reconstruction",
+      "Want autonomous AI agents but don't want to manage infrastructure"
+    ],
+    "keywords": [
+      "Claude Code",
+      "MCP",
+      "persistent memory",
+      "AI agents",
+      "autonomous agents",
+      "SR&ED",
+      "solo founder",
+      "self-hosted"
+    ]
+  },
+  "audience_segments": [],
+  "channel_strategy": {
+    "reddit": {
+      "subreddits": [
+        "r/ClaudeAI",
+        "r/selfhosted",
+        "r/SideProject",
+        "r/cantax"
+      ],
+      "flair": ""
+    },
+    "devto": {
+      "tags": [
+        "claude",
+        "mcp",
+        "ai",
+        "selfhosted",
+        "productivity"
+      ],
+      "series": "Research Server Patterns"
+    }
+  },
+  "pricing_summary": {
+    "model": "Free recipe + $2,500 done-for-you flat fee",
+    "tiers": [
+      {
+        "name": "Memory Persistence Recipe",
+        "price": "Free",
+        "features": [
+          "Standalone MCP stdio server",
+          "SQLite FTS5 persistent memory",
+          "5 tools: memory_save, memory_read, memory_search, session_save, session_get",
+          "5-minute setup via claude mcp add"
+        ]
+      },
+      {
+        "name": "Done-For-You Setup",
+        "price": "$2,500 CAD (one-time)",
+        "features": [
+          "Full Research Server configured on your hardware or VPS",
+          "Email-triggered Claude Code agents",
+          "Memory persistence across sessions",
+          "SR&ED diary automation",
+          "Wave accounting automation",
+          "First month of orchestrator tasks scheduled"
+        ]
+      }
+    ]
+  },
+  "suggested_angles": [
+    "How Research Server solves: Claude Code forgets everything between sessions \u00e2\u20ac\u201d re-explaining context every time",
+    "How Research Server solves: No way to trigger Claude from an email without complex infrastructure",
+    "How Research Server solves: SR&ED diary is always behind, risks CRA rejection for post-hoc reconstruction",
+    "How Research Server solves: Want autonomous AI agents but don't want to manage infrastructure"
+  ],
+  "segment_angles": {},
+  "spotlight": {
+    "hook": "",
+    "hero_endpoint": "",
+    "demo_path": "",
+    "campaign_priority": ""
+  },
+  "content_steering": {
+    "lessons_learned": [],
+    "blocked_channels": [],
+    "priority_channels": [],
+    "next_actions": []
+  },
+  "current_signals": {
+    "audience_signal": "",
+    "funnel_note": "",
+    "top_endpoints": {}
+  },
+  "brand_voice": {
+    "tone": "Terse and technically confident \u2014 written for builders who hate fluff and recognize signal immediately. Every sentence earns its place.",
+    "do_list": [
+      "Lead with concrete capability, not abstract value ('Agents wake from a forwarded email' not 'powerful automation')",
+      "Use short declarative sentences that assume technical literacy",
+      "Quantify setup friction honestly ('5 minutes', '$2,500 flat') \u2014 specificity builds trust"
+    ],
+    "dont_list": [
+      "Never use 'revolutionary', 'game-changing', or AI hype vocabulary",
+      "Don't explain what agents or memory are \u2014 the audience already knows",
+      "Avoid soft CTAs like 'learn more' or 'explore' \u2014 use direct action framing"
+    ]
+  }
+}
