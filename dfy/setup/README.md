@@ -7,11 +7,11 @@ Scripts and templates for configuring a Research Server instance for a DFY clien
 ## Workflow
 
 ```
-1. Fill out intake.json  (copy from intake.example.json)
-2. node generate-constitution.js  →  output/
-3. Fill output/env-template.txt with real credentials
-4. Start RS on client machine, source .env
-5. Run output/setup-commands.sh
+1. Payment clears → send INTAKE-QUESTIONNAIRE.md to client
+2. Client returns answers → fill intake.json from responses
+3. node generate-constitution.js  →  output/
+4. Collect credentials out-of-band (see Credential security below)
+5. Follow DELIVERY-WORKFLOW.md day by day
 6. Place output/constitution.md in client's RS cowork directory
 ```
 
@@ -21,10 +21,13 @@ Scripts and templates for configuring a Research Server instance for a DFY clien
 
 | File | Purpose |
 |------|---------|
-| `intake.example.json` | Schema for client intake data — copy to `intake.json` and fill out |
-| `generate-constitution.js` | Reads `intake.json` → generates `constitution.md`, `env-template.txt`, `setup-commands.sh` |
+| `DELIVERY-WORKFLOW.md` | Full 7-day delivery runbook + 14-day support window with exact commands |
+| `INTAKE-QUESTIONNAIRE.md` | Human-readable questionnaire to send client after payment — maps to intake.json |
+| `intake.example.json` | Machine-readable schema — fill from questionnaire responses to run the generator |
+| `generate-constitution.js` | Reads `intake.json` → generates `constitution.md`, `env-template.txt`, `setup-mailboxes.sql`, `setup-orchestrator.sh` |
 | `crypto-helper.js` | AES-256-GCM encrypt/decrypt for credential storage |
 | `m365-oauth-guide.md` | M365 OAuth2 setup steps + known gap in RS `email.js` |
+| `windows-startup.vbs` | Windows startup script template — drop in Startup folder, set RS_PATH |
 
 ---
 
