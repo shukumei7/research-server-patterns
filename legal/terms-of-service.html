@@ -3,33 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service — Research Server</title>
+  <title>Terms of Service — Research Server Patterns</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <style>
+    :root {
+      --accent: #2563eb;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-page: #fafafa;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: #1a1a1a; background: #fafafa; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: var(--text); background: var(--bg-page); }
+    header { border-bottom: 1px solid var(--border); background: var(--bg); }
+    .header-inner { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); }
+    .logo-name { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
+    .header-nav a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; }
+    .header-nav a:hover { color: var(--text); }
     .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-    .back { font-size: 0.9rem; margin-bottom: 2rem; }
-    .back a { color: #555; text-decoration: none; }
-    .back a:hover { color: #1a1a1a; }
-    .disclaimer { background: #fff8e1; border-left: 3px solid #f0ad00; padding: 0.75rem 1rem; margin-bottom: 2rem; font-size: 0.9rem; color: #555; border-radius: 0 4px 4px 0; }
-    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .meta { color: #555; font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.8; }
-    .meta strong { color: #1a1a1a; }
-    h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 0.5rem; }
-    h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.4rem; }
-    p { margin-bottom: 1rem; }
-    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
-    li { margin-bottom: 0.35rem; }
-    hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
-    a { color: #1a1a1a; }
-    code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
-    .contact { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; font-size: 0.9rem; color: #555; }
+    .disclaimer { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 0.75rem 1rem; margin-bottom: 2rem; font-size: 0.875rem; color: var(--text-muted); border-radius: 0 4px 4px 0; }
+    h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+    .meta { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 2rem; line-height: 1.9; }
+    .meta strong { color: var(--text); }
+    h2 { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 2.5rem 0 0.5rem; }
+    h3 { font-size: 0.9375rem; font-weight: 600; margin: 1.5rem 0 0.35rem; }
+    p { margin-bottom: 1rem; font-size: 0.9375rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; font-size: 0.9375rem; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    a { color: var(--accent); }
+    code { background: #f3f4f6; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem; }
+    th { text-align: left; padding: 0.5rem 0.75rem; background: #f9fafb; font-weight: 600; border: 1px solid var(--border); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+    td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); vertical-align: top; }
+    .fixed-note { font-style: italic; color: var(--text-muted); margin-top: 2rem; font-size: 0.875rem; }
+    .contact { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-muted); }
+    footer { border-top: 1px solid var(--border); margin-top: 4rem; }
+    .footer-inner { max-width: 680px; margin: 0 auto; padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; font-size: 0.8125rem; color: var(--text-muted); flex-wrap: wrap; }
+    .footer-inner a { color: var(--text-muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--text); }
+    .footer-spacer { flex: 1; }
   </style>
 </head>
 <body>
+<header>
+  <div class="header-inner">
+    <a href="../" class="logo">
+      <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="22" height="4" rx="2" fill="#2563EB"/>
+        <rect y="6.5" width="14" height="4" rx="2" fill="#2563EB"/>
+        <rect y="13" width="22" height="4" rx="2" fill="#2563EB"/>
+      </svg>
+      <span class="logo-name">Research Server Patterns</span>
+    </a>
+    <nav class="header-nav">
+      <a href="./index.html">← Back</a>
+    </nav>
+  </div>
+</header>
   <div class="container">
-    <p class="back"><a href="../dfy/">← Done-For-You Setup</a></p>
-
     <div class="disclaimer"><strong>Disclaimer:</strong> This document was prepared with AI assistance and has not been reviewed by a lawyer. Shoogar Soft Inc. recommends legal review before relying on these documents.</div>
 
     <h1>Terms of Service</h1>
@@ -208,5 +242,14 @@
 
     <div class="contact">Contact for any matter under these Terms: <a href="mailto:claude@shoogarsoft.com">claude@shoogarsoft.com</a></div>
   </div>
+<footer>
+  <div class="footer-inner">
+    <a href="terms-of-service.html">Terms of Service</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="service-scope.html">Service Scope</a>
+    <span class="footer-spacer"></span>
+    <span>Shoogar Soft Inc. — Edmonton, Alberta, Canada</span>
+  </div>
+</footer>
 </body>
 </html>

@@ -3,37 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research Server — Done-For-You Setup</title>
+  <title>Done-For-You Setup — Research Server Patterns</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <style>
+    :root {
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-green: #2d6a4f;
+      --accent-green-hover: #1e4d38;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-page: #fafafa;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
-    .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .subtitle { color: #555; font-size: 1.1rem; margin-bottom: 2.5rem; }
-    h2 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: var(--text); background: var(--bg-page); }
+
+    header { border-bottom: 1px solid var(--border); background: var(--bg); }
+    .header-inner { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); }
+    .logo-name { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
+    .header-nav a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; }
+    .header-nav a:hover { color: var(--text); }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-muted); font-size: 1.0625rem; margin-bottom: 2.5rem; }
+    h2 { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 2rem 0 0.75rem; }
     ul { padding-left: 1.25rem; margin-bottom: 1rem; }
-    li { margin-bottom: 0.4rem; }
-    .price-block { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.75rem; margin: 2rem 0; }
-    .price { font-size: 2.5rem; font-weight: 700; color: #1a1a1a; }
-    .price span { font-size: 1rem; font-weight: 400; color: #666; }
-    .cta-primary { display: inline-block; background: #1a1a1a; color: #fff; text-decoration: none; padding: 0.875rem 2rem; border-radius: 6px; font-size: 1rem; font-weight: 600; margin-top: 1rem; margin-right: 0.75rem; }
-    .cta-primary:hover { background: #333; }
-    .not-included { color: #888; font-size: 0.9rem; margin-top: 1.5rem; }
-    .email-line { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; color: #555; font-size: 0.95rem; }
-    .email-line a { color: #1a1a1a; }
-    code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+    li { margin-bottom: 0.4rem; font-size: 0.9375rem; }
+    p { margin-bottom: 1rem; font-size: 0.9375rem; }
+    a { color: var(--accent); }
+
+    .price-block { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; margin: 2.5rem 0; }
+    .price { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+    .price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .price-sub { color: var(--text-muted); font-size: 0.9375rem; margin: 0.375rem 0 1.25rem; }
+    .btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 7px; font-size: 0.9375rem; font-weight: 600; margin-right: 0.75rem; margin-top: 0.25rem; letter-spacing: -0.01em; }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-green { background: var(--accent-green); }
+    .btn-green:hover { background: var(--accent-green-hover); }
+    .btn-note { color: var(--text-muted); font-size: 0.8125rem; margin-top: 0.875rem; }
+
+    .note { color: var(--text-muted); font-size: 0.875rem; margin-top: 1.25rem; }
+    .note strong { color: var(--text); }
+
+    footer { border-top: 1px solid var(--border); margin-top: 4rem; }
+    .footer-inner { max-width: 680px; margin: 0 auto; padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; font-size: 0.8125rem; color: var(--text-muted); flex-wrap: wrap; }
+    .footer-inner a { color: var(--text-muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--text); }
+    .footer-spacer { flex: 1; }
   </style>
 </head>
 <body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../" class="logo">
+        <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="22" height="4" rx="2" fill="#2563EB"/>
+          <rect y="6.5" width="14" height="4" rx="2" fill="#2563EB"/>
+          <rect y="13" width="22" height="4" rx="2" fill="#2563EB"/>
+        </svg>
+        <span class="logo-name">Research Server Patterns</span>
+      </a>
+      <nav class="header-nav">
+        <a href="../recipes/memory-persistence/">Recipe</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="container">
-    <h1>Research Server — Done-For-You Setup</h1>
-    <p class="subtitle">The full autonomous back office, configured on your hardware. No calls. No UI. You manage it by email.</p>
+    <h1>Done-For-You Setup</h1>
+    <p class="subtitle">Full autonomous back office, configured on your hardware. No calls. You manage it by email.</p>
 
     <h2>What's included</h2>
     <ul>
-      <li>Research Server installed on your Windows machine or Linux VPS</li>
-      <li>Your email accounts connected (IMAP/SMTP, multi-mailbox)</li>
-      <li>Email-triggered Claude Code agent — forward a task, it runs</li>
+      <li>Research Server installed on your Windows 10/11 machine or Linux VPS</li>
+      <li>Your email accounts connected (IMAP/SMTP, multi-mailbox, up to 5)</li>
+      <li>Email-triggered Claude Code agent — forward a task, it runs and replies</li>
       <li>Memory persistence across Claude Code sessions</li>
       <li>First month of orchestrator tasks configured and scheduled</li>
       <li>SR&amp;ED diary automation (if you have eligible R&amp;D)</li>
@@ -44,32 +93,32 @@
     <ul>
       <li>Fill out the async intake form — 5 questions, 5 minutes</li>
       <li>Pay the flat fee via Stripe</li>
-      <li>I configure your instance over the following week — async, no calls</li>
+      <li>Configured over the following week — async, no calls</li>
       <li>You receive a running system with a handoff document</li>
     </ul>
 
     <div class="price-block">
       <div class="price">$2,500 <span>CAD, one-time</span></div>
-      <p style="color:#555; margin-top:0.5rem;">Fixed scope. No hourly billing. No scope creep.</p>
-      <a class="cta-primary" href="https://tally.so/r/Y5kO9q" target="_blank">Start with the intake form</a>
-      <a class="cta-primary" href="https://buy.stripe.com/test_bJeeV50Jy67l0G43zDbbG00" target="_blank" style="background:#2d6a4f;">Pay now ($2,500)</a>
-      <p style="color:#888; font-size:0.85rem; margin-top:1rem;">Complete the intake form first — payment confirms your spot.</p>
+      <p class="price-sub">Fixed scope. No hourly billing. No scope creep.</p>
+      <a class="btn" href="https://tally.so/r/Y5kO9q" target="_blank">Start with the intake form</a>
+      <a class="btn btn-green" href="https://buy.stripe.com/test_bJeeV50Jy67l0G43zDbbG00" target="_blank">Pay now ($2,500)</a>
+      <p class="btn-note">Complete the intake form first — payment confirms your spot.</p>
     </div>
 
-    <p class="not-included"><strong>Not included:</strong> ongoing maintenance and monitoring. Available separately as a managed retainer ($200–400/mo) — offered after delivery if you want it.</p>
+    <p class="note"><strong>Not included:</strong> ongoing maintenance and monitoring. Available separately as a managed retainer ($200–400/mo) — offered after delivery if you want it.</p>
 
-    <p class="not-included" style="margin-top:0.75rem;"><strong>Requirements:</strong> Windows 10/11 or Linux VPS with Node.js 18+. A <a href="https://claude.com/pricing" target="_blank" style="color:#888;">Claude.ai Pro subscription or higher</a> (includes Claude Code — this is what runs your automated tasks, billed to your account). Access to the accounts you want connected (email, GitHub, etc.). You do not need to be technical — the intake form asks what I need to know.</p>
-
-    <div class="email-line">
-      Questions? Forward them to <a href="mailto:claude@shoogarsoft.com"><code>claude@shoogarsoft.com</code></a> — the agent reads it and I'll follow up.
-    </div>
-
-    <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid #e0e0e0; font-size:0.8rem; color:#aaa;">
-      <a href="../legal/terms-of-service.html" style="color:#aaa; margin-right:1rem;">Terms of Service</a>
-      <a href="../legal/privacy-policy.html" style="color:#aaa; margin-right:1rem;">Privacy Policy</a>
-      <a href="../legal/service-scope.html" style="color:#aaa;">Service Scope</a>
-      <span style="margin-left:1rem;">Shoogar Soft Inc. — Edmonton, Alberta, Canada</span>
-    </div>
+    <p class="note"><strong>Requirements:</strong> Windows 10/11 or Linux VPS with Node.js 18+. A <a href="https://claude.com/pricing" target="_blank">Claude.ai Pro subscription or higher</a> (Claude Code runs your automated tasks under your account). Access to the accounts you want connected. You do not need to be technical — the intake form asks what I need to know.</p>
   </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="../legal/terms-of-service.html">Terms of Service</a>
+      <a href="../legal/privacy-policy.html">Privacy Policy</a>
+      <a href="../legal/service-scope.html">Service Scope</a>
+      <span class="footer-spacer"></span>
+      <span>Shoogar Soft Inc. — Edmonton, Alberta, Canada</span>
+    </div>
+  </footer>
+
 </body>
 </html>
