@@ -586,7 +586,7 @@ The orchestrator must be running on port 9009. Verify:
 curl -s http://localhost:9009/api/projects | python3 -c "import sys,json; d=json.load(sys.stdin); print('Orchestrator OK:', len(d['data']), 'tasks')"
 ```
 
-- [ ] **Step 1: Register `dfy-inquiry` mailbox trigger**
+- [x] **Step 1: Register `dfy-inquiry` mailbox trigger**
 
 ```bash
 curl -s -X POST http://localhost:9009/api/mailbox-triggers \
@@ -602,7 +602,7 @@ curl -s -X POST http://localhost:9009/api/mailbox-triggers \
 
 Expected: `OK: True 1` (or next available ID)
 
-- [ ] **Step 2: Register `dfy-intake` mailbox trigger**
+- [x] **Step 2: Register `dfy-intake` mailbox trigger**
 
 ```bash
 curl -s -X POST http://localhost:9009/api/mailbox-triggers \
@@ -618,7 +618,7 @@ curl -s -X POST http://localhost:9009/api/mailbox-triggers \
 
 Expected: `OK: True 2`
 
-- [ ] **Step 3: Register `dfy-approve` mailbox trigger**
+- [x] **Step 3: Register `dfy-approve` mailbox trigger**
 
 ```bash
 curl -s -X POST http://localhost:9009/api/mailbox-triggers \
@@ -634,7 +634,7 @@ curl -s -X POST http://localhost:9009/api/mailbox-triggers \
 
 Expected: `OK: True 3`
 
-- [ ] **Step 4: Register `dfy-pipeline-monitor` orchestrator task**
+- [x] **Step 4: Register `dfy-pipeline-monitor` orchestrator task**
 
 ```bash
 curl -s -X POST http://localhost:9009/api/projects \
@@ -649,7 +649,7 @@ curl -s -X POST http://localhost:9009/api/projects \
 
 Expected: `OK: True ID`
 
-- [ ] **Step 5: Verify all four are registered**
+- [x] **Step 5: Verify all four are registered**
 
 ```bash
 curl -s http://localhost:9009/api/mailbox-triggers | python3 -c "
@@ -676,7 +676,7 @@ for p in dfy: print(p['name'], '|', p['cron_expr'])
 
 Expected: `dfy-pipeline-monitor | 0 9 * * 1`
 
-- [ ] **Step 6: Commit trigger registration note**
+- [x] **Step 6: Commit trigger registration note**
 
 Triggers are registered in the DB, not in code. Record their existence:
 
