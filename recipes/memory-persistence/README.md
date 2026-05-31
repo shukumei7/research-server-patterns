@@ -98,9 +98,20 @@ Or add to your shell profile to make it permanent.
 
 ---
 
+## vs. cloud memory alternatives
+
+If you want semantic search and cross-device sync, [Mem0](https://mem0.ai) is the cloud-hosted alternative with a free tier. This recipe trades those features for:
+
+- **No account required** — nothing to sign up for, no API key
+- **Data sovereignty** — everything stays in a local SQLite file on your machine
+- **Works offline** — no network dependency
+- **Auditable** — open the `.db` file with any SQLite browser and read every memory directly
+
+---
+
 ## This is one recipe from Research Server
 
-Research Server is a full autonomous back-office system for solo founders — email triggers, scheduled agents, SR&ED diary automation, accounting automation, and more. This recipe is the memory layer, standalone.
+Research Server is a full autonomous back-office system for solo founders — email triggers, scheduled agents, SR&ED diary automation, and more. This recipe is the memory layer, standalone.
 
 [→ Research Server on GitHub](https://github.com/shukumei7/research-server-patterns)  
 [→ Done-for-you setup ($2,500)](https://shukumei7.github.io/research-server-patterns/dfy/)

@@ -2,10 +2,10 @@
 
 Claude Code is a powerful session-by-session tool. This repo makes it a 24/7 autonomous worker.
 
-- Sessions that remember what happened last week — no re-explaining
 - Agents that wake up from a forwarded email, execute a task, and go back to sleep
 - Cron jobs that run Claude Code instead of shell scripts
 - A skill library that carries learned patterns across sessions and projects
+- Local persistent memory — SQLite, no cloud account, no data leaves your machine
 
 **You manage your agent by email.** Forward it a task. It runs. No dashboard, no commands, no interface to learn.
 
@@ -23,7 +23,7 @@ Standalone, working patterns. Each solves one problem completely. Each runs with
 | Morning briefing *(coming soon)* | Synthesized project status email every morning | — |
 | Cron agent *(coming soon)* | Run Claude Code on a schedule, unattended | — |
 
-Start with [Memory persistence](./recipes/memory-persistence/) — it works standalone in 5 minutes and is the foundation everything else builds on.
+The memory persistence recipe is the fastest entry point — 5 minutes, standalone, local SQLite. If you want cloud memory with semantic search, [Mem0](https://mem0.ai) is the alternative; this recipe trades features for simplicity and data sovereignty.
 
 ---
 
