@@ -9,7 +9,9 @@
     "timezone": "America/Toronto",
     "agent_email": "claude@acmedev.ca",
     "rs_host": "localhost",
-    "rs_port": 9000
+    "rs_port": 9000,
+    "rs_install_path": "C:/research-server",
+    "_claude_note": "Client must have Claude Code CLI installed and authenticated with their own Anthropic account. Claude Code Pro ($100/mo) recommended for daily orchestrator tasks."
   },
 
   "projects": [
@@ -86,12 +88,16 @@
     {
       "name": "morning-briefing",
       "schedule": "0 8 * * *",
-      "description": "Daily project status summary — email to primary inbox"
+      "code_path": "C:/Projects",
+      "goal": null,
+      "_note": "Leave goal null — generator builds it from projects + memory_project"
     },
     {
       "name": "sred-diary",
       "schedule": "0 22 * * 5",
-      "description": "Weekly SR&ED diary entry from git log (Fridays at 10pm)"
+      "code_path": "C:/Projects/client-portal",
+      "goal": null,
+      "_note": "Leave goal null — generator builds it from active project with github_repo"
     }
   ],
 

@@ -16,7 +16,6 @@ This document is the complete and final list of what the $2,500 fee covers. If s
 - **Memory persistence** configured so context carries across Claude Code sessions.
 - **One (1) month of orchestrator tasks** configured and scheduled, based on the goals you describe in the intake form.
 - **SR&ED diary automation** configured **only if** you have eligible R&D and provide access to the relevant repository/history.
-- **Wave accounting automation** configured **only if** you already use Wave and provide access.
 - **A written handoff document** describing your specific setup and how to operate it.
 - **Written clarification support for fourteen (14) days** after handoff, by email, limited to questions about the configuration we delivered.
 
@@ -25,7 +24,7 @@ This document is the complete and final list of what the $2,500 fee covers. If s
 ## What is NOT included
 
 - **Hardware, the VPS, or any hosting.** You provide and pay for your own machine or server.
-- **Third-party subscription or usage costs** — Anthropic Claude API usage, email hosting, Wave, domain names, or any paid account. These are billed to you by those providers.
+- **Third-party subscription or usage costs** — a Claude.ai Pro subscription or higher is required (Claude Code runs your automated tasks under your account); email hosting, domain names, and any other third-party accounts are billed to you by those providers.
 - **Ongoing maintenance, monitoring, updates, or uptime.** Available separately as a managed retainer ($200–$400/mo), offered after delivery.
 - **Custom software development** or features beyond the published configuration above.
 - **Migrating, cleaning, or fixing your existing data, accounts, or systems.**
