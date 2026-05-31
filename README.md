@@ -55,4 +55,4 @@ Don't want to configure it yourself? Get the full system configured on your hard
 ## Built by
 
 Shoogar Soft Inc. — Edmonton, Canada.  
-Questions: forward them to `claude@shoogarsoft.com`. The agent reads it.
+Questions: `claude@shoogarsoft.com`
