@@ -1,0 +1,121 @@
+{
+  "_note": "Fill this out for each DFY client. Rename to intake.json. Do not commit intake.json — it contains PII.",
+
+  "client": {
+    "name": "Jane Smith",
+    "business_name": "Acme Dev Inc.",
+    "business_type": "Software consulting / SaaS",
+    "email": "jane@acmedev.ca",
+    "timezone": "America/Toronto",
+    "agent_email": "claude@acmedev.ca",
+    "rs_host": "localhost",
+    "rs_port": 9000
+  },
+
+  "projects": [
+    {
+      "name": "client-portal",
+      "description": "SaaS portal for enterprise clients. Main revenue product.",
+      "code_path": "C:/Projects/client-portal",
+      "status": "active",
+      "github_repo": "acmedev/client-portal"
+    },
+    {
+      "name": "internal-tools",
+      "description": "Internal automation scripts and utilities.",
+      "code_path": "C:/Projects/internal-tools",
+      "status": "active",
+      "github_repo": null
+    }
+  ],
+
+  "mailboxes": [
+    {
+      "name": "primary",
+      "label": "Primary Inbox",
+      "email": "jane@acmedev.ca",
+      "auth_type": "basic",
+      "imap_host": "mail.acmedev.ca",
+      "imap_port": 993,
+      "smtp_host": "mail.acmedev.ca",
+      "smtp_port": 587,
+      "username": "jane@acmedev.ca",
+      "password_env": "MAILBOX_PRIMARY_PASS",
+      "is_primary": true
+    },
+    {
+      "name": "claude",
+      "label": "Agent Outbox",
+      "email": "claude@acmedev.ca",
+      "auth_type": "basic",
+      "imap_host": "mail.acmedev.ca",
+      "imap_port": 993,
+      "smtp_host": "mail.acmedev.ca",
+      "smtp_port": 587,
+      "username": "claude@acmedev.ca",
+      "password_env": "MAILBOX_CLAUDE_PASS",
+      "is_primary": false
+    },
+    {
+      "_example_m365": "Remove this key — it is just documentation",
+      "name": "work",
+      "label": "Work (M365)",
+      "email": "jane@company.com",
+      "auth_type": "oauth2_m365",
+      "imap_host": "outlook.office365.com",
+      "imap_port": 993,
+      "smtp_host": "smtp.office365.com",
+      "smtp_port": 587,
+      "username": "jane@company.com",
+      "tenant_id_env": "M365_TENANT_ID",
+      "client_id_env": "M365_CLIENT_ID",
+      "client_secret_env": "M365_CLIENT_SECRET",
+      "password_env": null,
+      "is_primary": false,
+      "_note": "M365 requires Azure AD app registration. See m365-oauth-guide.md before setup."
+    }
+  ],
+
+  "goals": [
+    "Email-triggered agent: forward a task to claude@acmedev.ca, it runs and replies",
+    "SR&ED diary automation from git commits in client-portal",
+    "Morning briefing with project status and pending tasks"
+  ],
+
+  "orchestrator_tasks": [
+    {
+      "name": "morning-briefing",
+      "schedule": "0 8 * * *",
+      "description": "Daily project status summary — email to primary inbox"
+    },
+    {
+      "name": "sred-diary",
+      "schedule": "0 22 * * 5",
+      "description": "Weekly SR&ED diary entry from git log (Fridays at 10pm)"
+    }
+  ],
+
+  "mailbox_triggers": [
+    {
+      "name": "claude-instructions",
+      "mailbox": "claude",
+      "from_filter": "jane@acmedev.ca",
+      "prompt_template": "Process instruction email from Jane. Execute requested tasks in the project directory. Reply with confirmation and summary of what was done.",
+      "cwd": "C:/Projects"
+    }
+  ],
+
+  "integrations": {
+    "wave": false,
+    "github": true,
+    "github_org": "acmedev",
+    "github_token_env": "GITHUB_TOKEN"
+  },
+
+  "preferences": {
+    "communication_style": "Direct, technical, no pleasantries",
+    "escalate_on": "Anything touching client data, billing, or external communications not explicitly authorized",
+    "autonomous_ok": "File operations, git commits on feature branches, scheduled task runs, internal emails",
+    "memory_project": "acme-dev"
+  }
+}

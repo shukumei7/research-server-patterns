@@ -4,3 +4,8 @@ node_modules/
 *.db-wal
 .env
 .DS_Store
+
+# DFY client data — never commit
+dfy/setup/intake.json
+dfy/setup/output/
+credentials.enc.json
