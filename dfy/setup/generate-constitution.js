@@ -350,6 +350,14 @@ mailbox_triggers.forEach(t => {
 
 orchLines.push('echo ""');
 orchLines.push('echo "Orchestrator setup complete. Verify at http://localhost:9009/dashboard"');
+orchLines.push('');
+orchLines.push('# ── Record software versions for handoff document ───────────────────────────');
+orchLines.push('echo ""');
+orchLines.push('echo "=== Software versions at delivery (paste into handoff document) ==="');
+orchLines.push('echo "Claude Code CLI: $(claude --version 2>/dev/null || echo \'not found\')"');
+orchLines.push('echo "Node.js: $(node --version)"');
+orchLines.push('echo "npm: $(npm --version)"');
+orchLines.push('echo "Delivery date: $(date +%Y-%m-%d)"');
 
 // ── Write outputs ──────────────────────────────────────────────────────────────
 

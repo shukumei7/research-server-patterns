@@ -44,6 +44,7 @@ This document is the complete and final list of what the $2,500 fee covers. If s
 - **Payment:** $2,500 CAD via Stripe, due before work begins. Plus GST/HST if Shoogar Soft is registered at the time of sale.
 - **Refunds:** the fee is non-refundable once work begins. If you cancel in writing before work begins, you are refunded in full less non-recoverable Stripe fees. See the Terms of Service.
 - **Scope changes:** anything outside this list is a separate engagement, quoted separately in writing before any work on it begins.
+- **Software versions:** the system is configured and tested against the software versions current at delivery (Claude Code CLI, Node.js, npm dependencies). Future updates to any of these may change behavior or require maintenance. The handoff document records the versions installed. Keeping the system current after the 14-day support window is the client's responsibility, or covered by the optional managed retainer.
 
 ---
 
