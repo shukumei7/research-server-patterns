@@ -1,0 +1,13 @@
+{
+  "name": "Research Server Patterns",
+  "short_name": "RSP",
+  "description": "Agentic infrastructure for Claude Code. Email triggers, scheduled agents, local memory.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#2563EB",
+  "theme_color": "#2563EB",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

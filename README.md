@@ -5,7 +5,7 @@ Claude Code is a powerful session-by-session tool. This repo makes it a 24/7 aut
 - Agents that wake up from a forwarded email, execute a task, and go back to sleep
 - Cron jobs that run Claude Code instead of shell scripts
 - A skill library that carries learned patterns across sessions and projects
-- Local persistent memory — SQLite, no cloud account, no data leaves your machine
+- Local persistent memory — SQLite, no third-party memory service, storage stays on your machine
 
 **You manage your agent by email.** Forward it a task. It runs. No dashboard, no commands, no interface to learn.
 

@@ -102,9 +102,9 @@ Or add to your shell profile to make it permanent.
 
 If you want semantic search and cross-device sync, [Mem0](https://mem0.ai) is the cloud-hosted alternative with a free tier. This recipe trades those features for:
 
-- **No account required** — nothing to sign up for, no API key
-- **Data sovereignty** — everything stays in a local SQLite file on your machine
-- **Works offline** — no network dependency
+- **No account required** — nothing to sign up for, no third-party memory service
+- **Local storage** — memory lives in a SQLite file on your machine; no data goes to a memory cloud service. Note: memory content is passed to Claude through your normal Claude Code sessions, which use Anthropic's API.
+- **Works offline** — no memory service network dependency (Claude Code itself still needs API access)
 - **Auditable** — open the `.db` file with any SQLite browser and read every memory directly
 
 ---
