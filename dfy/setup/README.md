@@ -7,13 +7,19 @@ Scripts and templates for configuring a Research Server instance for a DFY clien
 ## Workflow
 
 ```
-1. Payment clears → send INTAKE-QUESTIONNAIRE.md to client
-2. Client returns answers → fill intake.json from responses
-3. node generate-constitution.js  →  output/
-4. Collect credentials out-of-band (see Credential security below)
-5. Follow DELIVERY-WORKFLOW.md day by day
-6. Place output/constitution.md in client's RS cowork directory
+1. Payment clears → send client the Tally setup questionnaire: https://tally.so/r/lbvKpv
+2. Tally submits notification email → dfy-intake trigger parses it automatically
+3. Review staged action in /rsc/admin, approve via email reply
+4. For manual use: fill rsc/scripts/intake.example.json, run node rsc/scripts/generate-constitution.js
+5. Follow dfy/setup/DELIVERY-WORKFLOW.md day by day
 ```
+
+## Scripts
+
+Scripts have moved to `rsc/scripts/` in this repo:
+- `rsc/scripts/generate-constitution.js` — generates constitution.md from intake.json
+- `rsc/scripts/crypto-helper.js` — AES-256-GCM encryption for credential transmission
+- `rsc/scripts/parse-tally-email.js` — parses Tally notification emails to JSON
 
 ---
 
