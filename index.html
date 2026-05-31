@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Server — Persistent Agentic Infrastructure for Claude Code</title>
+  <meta name="description" content="Claude Code remembers Monday on Friday. Sessions that remember last week. Agents that wake up from an email, execute a task, and go back to sleep.">
+  <meta property="og:title" content="Research Server — Persistent Agentic Infrastructure for Claude Code">
+  <meta property="og:description" content="Claude Code remembers Monday on Friday. Sessions that remember last week. Agents that wake up from an email, execute a task, and go back to sleep.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: #1a1a1a; background: #fafafa; }
+    .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
+    .tagline { font-size: 1.15rem; color: #555; margin-bottom: 2.5rem; }
+    .bullets { list-style: none; padding: 0; margin-bottom: 2.5rem; }
+    .bullets li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+    .bullets li::before { content: "—"; position: absolute; left: 0; color: #aaa; }
+    h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+    th { text-align: left; padding: 0.5rem 0.75rem; background: #f0f0f0; font-weight: 600; font-size: 0.9rem; border: 1px solid #e0e0e0; }
+    td { padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; font-size: 0.95rem; vertical-align: top; }
+    td.soon { color: #999; font-style: italic; }
+    code { font-family: 'SFMono-Regular', Consolas, monospace; background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.875em; }
+    pre { background: #f0f0f0; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; overflow-x: auto; font-size: 0.875rem; line-height: 1.6; }
+    pre code { background: none; padding: 0; font-size: inherit; }
+    a { color: #1a1a1a; }
+    a:hover { color: #555; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 2.5rem 0; }
+    .dfy-block { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.75rem; margin: 2.5rem 0; }
+    .dfy-block p { color: #555; margin-bottom: 1rem; }
+    .cta { display: inline-block; background: #1a1a1a; color: #fff; text-decoration: none; padding: 0.75rem 1.75rem; border-radius: 6px; font-size: 0.95rem; font-weight: 600; }
+    .cta:hover { background: #333; color: #fff; }
+    .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; font-size: 0.85rem; color: #aaa; }
+    .footer a { color: #aaa; margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Research Server</h1>
+    <p class="tagline">Persistent agentic infrastructure for Claude Code. Claude remembers Monday on Friday.</p>
+
+    <ul class="bullets">
+      <li>Sessions that remember what happened last week — no re-explaining</li>
+      <li>Agents that wake up from a forwarded email, execute a task, and go back to sleep</li>
+      <li>Cron jobs that run Claude Code instead of shell scripts</li>
+      <li>A skill library that carries learned patterns across sessions and projects</li>
+    </ul>
+
+    <p><strong>You manage your agent by email.</strong> Forward it a task. It runs. No dashboard, no commands, no interface to learn.</p>
+
+    <hr>
+
+    <h2>Recipes</h2>
+
+    <p>Standalone, working patterns. Each solves one problem completely. Each runs without the full system.</p>
+
+    <table>
+      <thead>
+        <tr><th>Recipe</th><th>What it does</th><th>Setup time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="./recipes/memory-persistence/">Memory persistence</a></td>
+          <td>Claude remembers Monday on Friday</td>
+          <td>5 min</td>
+        </tr>
+        <tr>
+          <td class="soon">Email-triggered agent</td>
+          <td class="soon">Forward an email — agent executes the task</td>
+          <td class="soon">coming soon</td>
+        </tr>
+        <tr>
+          <td class="soon">SR&amp;ED diary</td>
+          <td class="soon">Auto-generates diary from git commits + terminal history</td>
+          <td class="soon">coming soon</td>
+        </tr>
+        <tr>
+          <td class="soon">Morning briefing</td>
+          <td class="soon">Synthesized project status email every morning</td>
+          <td class="soon">coming soon</td>
+        </tr>
+        <tr>
+          <td class="soon">Cron agent</td>
+          <td class="soon">Run Claude Code on a schedule, unattended</td>
+          <td class="soon">coming soon</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Start with <a href="./recipes/memory-persistence/">Memory persistence</a> — it works standalone in 5 minutes and is the foundation everything else builds on.</p>
+
+    <hr>
+
+    <h2>Architecture</h2>
+
+    <p>Four Node.js processes, each with one responsibility:</p>
+
+    <pre><code>mcp-server.js   (port 9003)  — MCP tools: memory, skills, email, calendar, contacts
+orchestrator.js (port 9009)  — Cron scheduler + email trigger → Claude Code agent
+server.js       (port 9000)  — Admin UI, terminal, SpecKit dev workflow
+llm-proxy.js    (port 9001)  — OpenAI-compatible LLM proxy (routes to Claude or Gemini)</code></pre>
+
+    <p>The recipes in this repo are standalone extractions of the patterns — run them independently, or assemble them into the full system.</p>
+
+    <p>The full system has been running unattended across four active businesses for months. Every recipe is a pattern extracted from production.</p>
+
+    <div class="dfy-block">
+      <strong>Don't want to configure it yourself?</strong>
+      <p>Get the full system configured on your hardware or VPS — accounts wired, workflows running, first month of tasks scheduled. Async, no calls. $2,500 flat.</p>
+      <a class="cta" href="./dfy/">Done-for-you setup →</a>
+    </div>
+
+    <div class="footer">
+      <a href="https://github.com/shukumei7/research-server-patterns">GitHub</a>
+      <a href="./legal/terms-of-service.html">Terms of Service</a>
+      <a href="./legal/privacy-policy.html">Privacy Policy</a>
+      <span>Shoogar Soft Inc. — Edmonton, Canada</span>
+    </div>
+
+  </div>
+</body>
+</html>
