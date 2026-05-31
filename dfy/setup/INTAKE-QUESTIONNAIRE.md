@@ -1,7 +1,11 @@
 # Research Server — Detailed Intake Questionnaire
 
-**Send this after payment clears. Client fills it out async — no call required.**
+**Tally form (send this link):** https://tally.so/r/lbvKpv
+
+**Send after payment clears. Client fills it out async — no call required.**
 **Collect credentials (passwords, SSH keys) separately via a secure channel (see bottom).**
+
+*The markdown below mirrors the Tally form for reference. The live form is the source of truth.*
 
 ---
 

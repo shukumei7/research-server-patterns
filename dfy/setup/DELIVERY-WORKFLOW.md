@@ -74,6 +74,12 @@ Test from Allan's machine:
 ssh rsp-clientname "node --version && echo 'Windows SSH OK'"
 ```
 
+### Intake Questionnaire
+
+Send this Tally form link to the client: **https://tally.so/r/lbvKpv**
+
+Full markdown reference: `INTAKE-QUESTIONNAIRE.md`
+
 ### Acknowledgment Email Template
 ```
 Subject: Research Server — Setup Started
