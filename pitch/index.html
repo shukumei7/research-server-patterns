@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Server Patterns — Pitch Deck</title>
+<meta name="description" content="Persistent agentic infrastructure for Claude Code. Claude Code, running 24/7.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #0f172a;
+    --muted: #475569;
+    --accent: #2563eb;
+    --accent-2: #1d4ed8;
+    --accent-soft: #eff6ff;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+    --soft: #f8fafc;
+  }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    color: var(--ink);
+    background: #eef2f7;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    line-height: 1.5;
+  }
+  .deck { max-width: 1120px; margin: 0 auto; padding: 24px; }
+  .slide {
+    container-type: size;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 5.2% 5.6%;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, .10);
+  }
+  .accentbar {
+    position: absolute; left: 0; top: 0; height: 100%; width: 0.55%;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  }
+  .mark { display: flex; align-items: center; gap: 0.7em; }
+  .mark svg { width: 1.7em; height: 1.3em; }
+  .mark .name { font-weight: 700; font-size: 1.45cqw; letter-spacing: -0.01em; }
+  .kicker { font-size: 1.35cqw; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  h1 { font-size: 5.4cqw; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: 3.5cqw; line-height: 1.12; font-weight: 800; letter-spacing: -0.015em; margin-top: 0.4em; }
+  .lead { font-size: 1.7cqw; line-height: 1.5; color: var(--muted); margin-top: 1.1em; max-width: 78%; }
+  .big { font-size: 2.4cqw; line-height: 1.4; font-weight: 500; max-width: 88%; margin-top: 1.1em; }
+  .big .hl { color: var(--accent); font-weight: 800; }
+  .tag { font-size: 2.2cqw; color: var(--muted); margin-top: 0.5em; font-weight: 500; }
+  .meta { margin-top: auto; font-size: 1.4cqw; color: var(--muted); line-height: 1.7; }
+  .meta b { color: var(--ink); }
+  .pagenum { position: absolute; right: 2.4cqw; bottom: 2cqw; font-size: 1.15cqw; color: #94a3b8; letter-spacing: 0.05em; }
+  .brandfoot { position: absolute; left: 5.6%; bottom: 2cqw; font-size: 1.05cqw; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .cols { display: flex; gap: 1.6cqw; margin-top: 1.6em; }
+  .cols .card { flex: 1; background: var(--soft); border: 1px solid var(--line); border-radius: 0.9cqw; padding: 1.5em 1.3em; }
+  .card h3 { font-size: 1.6cqw; font-weight: 800; margin-bottom: 0.4em; color: var(--ink); }
+  .card p { font-size: 1.35cqw; line-height: 1.45; color: var(--muted); }
+  .card .ico { font-size: 2cqw; margin-bottom: 0.3em; }
+
+  ul.steps { list-style: none; margin-top: 1.4em; }
+  ul.steps li { display: flex; align-items: flex-start; gap: 1.1em; padding: 0.8em 0; border-bottom: 1px solid var(--line); }
+  ul.steps li .n { flex: 0 0 auto; width: 2.5em; height: 2.5em; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 1.2cqw; display: flex; align-items: center; justify-content: center; }
+  ul.steps li .t { font-size: 1.5cqw; line-height: 1.4; padding-top: 0.35em; }
+  ul.steps li .t b { color: var(--ink); }
+  ul.steps li .t span { color: var(--muted); }
+  ul.steps li .t .done { color: var(--accent); font-weight: 800; }
+
+  .twocol { display: flex; gap: 2cqw; margin-top: 1.4em; flex: 1; }
+  .twocol .half { flex: 1; }
+  .twocol h3 { font-size: 1.35cqw; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.7em; }
+  .twocol p { font-size: 1.5cqw; line-height: 1.5; color: var(--muted); }
+  .twocol p b { color: var(--ink); }
+
+  .pills { margin-top: 1.4em; }
+  .pill { display: inline-block; background: var(--accent-soft); border: 1px solid #bfdbfe; border-radius: 999px; padding: 0.5em 1.1em; font-size: 1.3cqw; color: var(--accent-2); margin: 0.4em 0.4em 0 0; }
+
+  .arch { background: var(--soft); border: 1px solid var(--line); border-radius: 0.9cqw; padding: 1.4em 1.5em; margin-top: 1.3em; font-size: 1.4cqw; }
+  .arch .row { display: flex; gap: 0.6em; padding: 0.45em 0; border-bottom: 1px dashed var(--line); }
+  .arch .row:last-child { border-bottom: none; }
+  .arch .port { color: var(--accent); font-weight: 700; flex: 0 0 11em; font-variant-numeric: tabular-nums; }
+  .arch .proc { font-weight: 700; color: var(--ink); flex: 0 0 13em; }
+  .arch .desc { color: var(--muted); }
+
+  .price { font-size: 4cqw; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); }
+  .price span { font-size: 1.4cqw; font-weight: 500; color: var(--muted); }
+
+  @media print {
+    body { background: #fff; }
+    .deck { max-width: none; padding: 0; }
+    .slide { border-radius: 0; margin: 0; box-shadow: none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. TITLE -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="kicker">Shoogar Soft Inc.</div>
+      <div class="mark" style="margin-top:0.7em;">
+        <svg viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="22" height="4" rx="2" fill="#2563EB"/>
+          <rect y="6.5" width="14" height="4" rx="2" fill="#2563EB"/>
+          <rect y="13" width="22" height="4" rx="2" fill="#2563EB"/>
+        </svg>
+        <span class="name" style="font-size:2.6cqw;">Research Server Patterns</span>
+      </div>
+      <h1 style="margin-top:0.5em;">Claude Code,<br>running 24/7.</h1>
+      <p class="tag">Persistent agentic infrastructure for Claude Code.<br>Email triggers, scheduled agents, local memory — self-hosted on your hardware.</p>
+      <div class="meta">
+        <b>rsp.shoogarsoft.com</b> &nbsp;·&nbsp; Edmonton, Alberta, Canada<br>
+        Bootstrapped · Incorporated 2026 · Production-deployed across four businesses
+      </div>
+    </div>
+    <div class="brandfoot">Research Server Patterns</div>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">The Problem</div>
+    <h2>Claude Code forgets everything<br>when you close the terminal.</h2>
+    <div class="cols">
+      <div class="card"><div class="ico">🧠</div><h3>Context amnesia</h3><p>You explain the codebase Monday. Friday, Claude has no idea. Every fresh session starts from scratch.</p></div>
+      <div class="card"><div class="ico">⏰</div><h3>No unattended operation</h3><p>Agents don't wake from a trigger. They don't run on a schedule. Claude Code is session-by-session only.</p></div>
+      <div class="card"><div class="ico">🔁</div><h3>Re-explaining tax</h3><p>Power users lose 30+ minutes per dev per week re-explaining context that should have persisted.</p></div>
+    </div>
+    <p class="lead">The tool is powerful. The infrastructure around it — memory, triggers, scheduling, uptime — doesn't exist out of the box.</p>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">02</div>
+  </section>
+
+  <!-- 3. SOLUTION -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">The Solution</div>
+    <h2>Persistent agentic infrastructure<br>for Claude Code.</h2>
+    <p class="big">Sessions that <span class="hl">remember</span>. Agents that <span class="hl">wake from an email</span>. Cron jobs that <span class="hl">run Claude Code</span>. A skill library that carries learned patterns across sessions and projects.</p>
+    <div class="cols">
+      <div class="card"><h3>Local persistent memory</h3><p>SQLite + FTS5. Friday remembers Monday. Your data stays on your machine.</p></div>
+      <div class="card"><h3>Email-triggered agents</h3><p>Forward a task — an agent executes it and replies in-thread.</p></div>
+      <div class="card"><h3>Scheduled agents</h3><p>Cron jobs that run Claude Code instead of shell scripts, with quota fallback.</p></div>
+      <div class="card"><h3>Skill library</h3><p>Learned patterns persist across sessions, projects, and teams.</p></div>
+    </div>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">03</div>
+  </section>
+
+  <!-- 4. ARCHITECTURE -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">How It Works</div>
+    <h2>Four processes. One system.<br>Self-hosted on your hardware.</h2>
+    <div class="arch">
+      <div class="row"><span class="port">:9003</span><span class="proc">mcp-server</span><span class="desc">MCP tools — memory, skills, email, calendar, contacts (42 tools, SQLite FTS5)</span></div>
+      <div class="row"><span class="port">:9009</span><span class="proc">orchestrator</span><span class="desc">Cron scheduler + email trigger → Claude Code agent; quota fallback; heartbeats</span></div>
+      <div class="row"><span class="port">:9000</span><span class="proc">server</span><span class="desc">Admin UI, terminal, SpecKit development workflow</span></div>
+      <div class="row"><span class="port">:9001</span><span class="proc">llm-proxy</span><span class="desc">OpenAI-compatible proxy — routes to Claude or Gemini</span></div>
+    </div>
+    <p class="lead">Each capability ships as a standalone <b>recipe</b> — run one in 5 minutes, or assemble the full system. The full system has run unattended across four active businesses for months.</p>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">04</div>
+  </section>
+
+  <!-- 5. MOAT -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Why It's Different</div>
+    <h2>Production-proven — not a demo.</h2>
+    <p class="big">This system has run <span class="hl">unattended, across four active businesses, for months</span>. Every agency selling "AI automation" is wiring up flows they have never personally run at scale. RSP runs the founder's own businesses.</p>
+    <div class="cols">
+      <div class="card"><div class="ico">🏭</div><h3>Existence proof</h3><p>Four products (Scourr, Research Server, DigiBoss, Pocket IT) running on it continuously since May 2026.</p></div>
+      <div class="card"><div class="ico">🔒</div><h3>On-prem sovereignty</h3><p>Your hardware. Your accounts. Your data. No third-party memory cloud, no per-seat SaaS lock-in.</p></div>
+      <div class="card"><div class="ico">🎯</div><h3>Calibrated autonomy</h3><p>Research direction: agents that learn when their own confidence is low and escalate — not static rule gates.</p></div>
+    </div>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">05</div>
+  </section>
+
+  <!-- 6. COMPETITION -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Competitive Landscape</div>
+    <h2>Two camps. The space between<br>them is empty.</h2>
+    <div class="twocol">
+      <div class="half">
+        <h3>Developer frameworks</h3>
+        <p><b>LangGraph · AutoGen · CrewAI · LlamaIndex · provider SDKs</b></p>
+        <p style="margin-top:.7em;">Powerful — but they are <b>libraries</b>, not running systems. Enterprise-targeted. Their human-in-the-loop is always hand-coded at a fixed node.</p>
+      </div>
+      <div class="half">
+        <h3>No-code automation</h3>
+        <p><b>n8n · Zapier · Lindy · Relay</b></p>
+        <p style="margin-top:.7em;">SME-friendly and deployable — but "when to involve a human" is <b>manual configuration</b>. The agent never decides it is uncertain.</p>
+      </div>
+    </div>
+    <p class="big" style="margin-top:1.2em;">RSP sits between them — <span class="hl">SME-deployable convenience, with escalation depth that exceeds the frameworks</span>, by making the agent the decider.</p>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">06</div>
+  </section>
+
+  <!-- 7. MARKET -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Who It's For</div>
+    <h2>Engineering teams already<br>using Claude Code.</h2>
+    <div class="twocol">
+      <div class="half">
+        <h3>Primary buyer</h3>
+        <p>SME engineering teams of <b>2–15 engineers</b> on Claude Code (or an AI-heavy Cursor / Copilot stack) who want unattended operation, persistent memory, and on-prem data sovereignty — without owning the setup.</p>
+      </div>
+      <div class="half">
+        <h3>Why now</h3>
+        <p>Anthropic's <b>Agent View</b> (May 2026) solved session persistence — but not email-triggered agents, cron-to-agent scheduling, multi-mailbox routing, or on-prem. That trigger surface is the open window.</p>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill">Claude Code teams</span>
+      <span class="pill">AI-heavy startups</span>
+      <span class="pill">Self-hosters</span>
+      <span class="pill">Data-sovereignty conscious</span>
+    </div>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">07</div>
+  </section>
+
+  <!-- 8. BUSINESS MODEL -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Business Model</div>
+    <h2>Configured once. Kept alive.<br>Flat fee.</h2>
+    <div class="cols">
+      <div class="card"><h3>Done-for-you</h3><div class="price" style="font-size:2.6cqw; margin:.3em 0;">$2,500<span> CAD, one-time</span></div><p>Full system on your hardware. Accounts wired, first month of tasks scheduled. Async — no calls. Stripe live.</p></div>
+      <div class="card"><h3>Managed retainer</h3><div class="price" style="font-size:2.6cqw; margin:.3em 0;">$200–500<span> /mo</span></div><p>Monitoring, cron-drift correction, key rotation, prompt tuning. Opt-in after delivery. The answer to "configured ≠ running."</p></div>
+      <div class="card"><h3>Recipes — free</h3><div class="price" style="font-size:2.6cqw; margin:.3em 0;">$0</div><p>Standalone patterns. Pure top-of-funnel — recipe readers convert to DFY when they want the whole system.</p></div>
+    </div>
+    <p class="lead">No hosted SaaS tier. The buyer brings their own accounts and hardware; RSP's cost is founder time, not per-seat LLM spend.</p>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">08</div>
+  </section>
+
+  <!-- 9. ROADMAP -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Roadmap</div>
+    <h2>Shipped — and where it's going.</h2>
+    <ul class="steps">
+      <li><div class="n">✓</div><div class="t"><b>M0 — Repo public</b> <span class="done">· shipped</span> &nbsp;<span>— public repo, architecture docs, memory + email-trigger recipes, DFY intake, Stripe live.</span></div></li>
+      <li><div class="n">2</div><div class="t"><b>M1 — Distribution</b> &nbsp;<span>— Show HN, recipes to r/ClaudeAI &amp; r/cantax, MCP directories, Dev.to architecture post.</span></div></li>
+      <li><div class="n">3</div><div class="t"><b>M2 — First DFY deliveries</b> &nbsp;<span>— paid setups, configuration template hardened against real edge cases.</span></div></li>
+      <li><div class="n">4</div><div class="t"><b>M3 — Managed retainer live</b> &nbsp;<span>— recurring revenue from buyers who want it kept running.</span></div></li>
+      <li><div class="n">5</div><div class="t"><b>M4 — Containerized Linux/VPS</b> &nbsp;<span>— removes Windows-only friction; clean VPS install &lt; 30 min.</span></div></li>
+    </ul>
+    <p class="lead">Parallel R&amp;D track: <b>calibrated-escalation research</b> (NRC IRAP) — the long-term IP moat.</p>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">09</div>
+  </section>
+
+  <!-- 10. TEAM & ASK -->
+  <section class="slide">
+    <div class="accentbar"></div>
+    <div class="kicker">Team &amp; Ask</div>
+    <h2>Built by one founder,<br>running in production.</h2>
+    <div class="twocol">
+      <div class="half">
+        <h3>Who</h3>
+        <p><b>Allan Bate</b> — founder, Shoogar Soft Inc. AI automation engineer with production experience in agentic orchestration, Node.js, and Claude/LLM tooling. Deploys and runs RSP on live infrastructure across four products. Edmonton, Canada. Bootstrapped.</p>
+      </div>
+      <div class="half">
+        <h3>The ask</h3>
+        <p><b>First DFY customers</b> — signal-matched engineering teams who want the full system configured on their hardware.<br><br><b>R&amp;D funding (NRC IRAP)</b> — to underwrite the calibrated-escalation research track.</p>
+      </div>
+    </div>
+    <p class="big" style="margin-top:1.2em;">Claude Code is a powerful session-by-session tool. RSP makes it a <span class="hl">24/7 autonomous worker</span>.</p>
+    <div class="meta" style="margin-top:1.2em;"><b>rsp.shoogarsoft.com</b> &nbsp;·&nbsp; claude@shoogarsoft.com &nbsp;·&nbsp; Shoogar Soft Inc.</div>
+    <div class="brandfoot">Research Server Patterns</div>
+    <div class="pagenum">10</div>
+  </section>
+
+</div>
+</body>
+</html>
