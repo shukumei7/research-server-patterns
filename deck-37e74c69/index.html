@@ -151,7 +151,7 @@
     <h2>Persistent agentic infrastructure<br>for Claude Code.</h2>
     <p class="big">Sessions that <span class="hl">remember</span>. Agents that <span class="hl">wake from an email</span>. Cron jobs that <span class="hl">run Claude Code</span>. A skill library that carries learned patterns across sessions and projects.</p>
     <div class="cols">
-      <div class="card"><h3>Local persistent memory</h3><p>SQLite + FTS5. Friday remembers Monday. Your data stays on your machine.</p></div>
+      <div class="card"><h3>Local persistent memory</h3><p>Hybrid search — keyword + semantic. Friday remembers Monday. Your data stays on your machine.</p></div>
       <div class="card"><h3>Email-triggered agents</h3><p>Forward a task — an agent executes it and replies in-thread.</p></div>
       <div class="card"><h3>Scheduled agents</h3><p>Cron jobs that run Claude Code instead of shell scripts, with quota fallback.</p></div>
       <div class="card"><h3>Skill library</h3><p>Learned patterns persist across sessions, projects, and teams.</p></div>
@@ -166,8 +166,8 @@
     <div class="kicker">How It Works</div>
     <h2>Four processes. One system.<br>Self-hosted on your hardware.</h2>
     <div class="arch">
-      <div class="row"><span class="port">:9003</span><span class="proc">mcp-server</span><span class="desc">MCP tools — memory, skills, email, calendar, contacts (42 tools, SQLite FTS5)</span></div>
-      <div class="row"><span class="port">:9009</span><span class="proc">orchestrator</span><span class="desc">Cron scheduler + email trigger → Claude Code agent; quota fallback; heartbeats</span></div>
+      <div class="row"><span class="port">:9003</span><span class="proc">mcp-server</span><span class="desc">MCP tools — memory, skills, email, calendar, contacts (42 tools; hybrid keyword + semantic search)</span></div>
+      <div class="row"><span class="port">:9009</span><span class="proc">orchestrator</span><span class="desc">Cron scheduler + email trigger → Claude Code agent; multi-provider quota fallback; heartbeats</span></div>
       <div class="row"><span class="port">:9000</span><span class="proc">server</span><span class="desc">Admin UI, terminal, SpecKit development workflow</span></div>
       <div class="row"><span class="port">:9001</span><span class="proc">llm-proxy</span><span class="desc">OpenAI-compatible proxy — routes to Claude or Gemini</span></div>
     </div>
@@ -184,7 +184,7 @@
     <p class="big">This system has run <span class="hl">unattended, across four active businesses, for months</span>. Every agency selling "AI automation" is wiring up flows they have never personally run at scale. RSP runs the founder's own businesses.</p>
     <div class="cols">
       <div class="card"><div class="ico">🏭</div><h3>Existence proof</h3><p>Four products (Scourr, Research Server, DigiBoss, Pocket IT) running on it continuously since May 2026.</p></div>
-      <div class="card"><div class="ico">🔒</div><h3>On-prem sovereignty</h3><p>Your hardware. Your accounts. Your data. No third-party memory cloud, no per-seat SaaS lock-in.</p></div>
+      <div class="card"><div class="ico">🔒</div><h3>On-prem sovereignty</h3><p>Your hardware. Your accounts. Semantic memory via local sqlite-vec — no cloud memory service, no per-seat SaaS lock-in.</p></div>
       <div class="card"><div class="ico">🎯</div><h3>Calibrated autonomy</h3><p>Research direction: agents that learn when their own confidence is low and escalate — not static rule gates.</p></div>
     </div>
     <div class="brandfoot">Research Server Patterns</div>
